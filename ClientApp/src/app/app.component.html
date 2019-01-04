@@ -1,0 +1,52 @@
+<mat-form-field>
+  <input matInput #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="Employee Id">
+</mat-form-field>
+<div *ngIf="!emp">
+  <mat-card>Couldn't find an employee with ID {{empId}}</mat-card>
+</div>
+<div *ngIf="emp">
+  <mat-accordion class="expansion-icons-align">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Employee
+        </mat-panel-title>
+        <mat-panel-description>
+          {{emp.empCode}}: {{emp.empName}}
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <mat-list role="list">
+          <mat-list-item role="listitem">
+            <p>Country: {{emp.empDetails.country}}</p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <p>State: {{emp.empDetails.state}}</p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <p>City: {{emp.empDetails.city}}</p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <p>Block No: {{emp.empDetails.blockNo}}</p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <p>Street: {{emp.empDetails.street}}</p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <p>Hosue No: {{emp.empDetails.houseNo}}</p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <p>Phone: {{emp.empDetails.phone}}</p>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <p>Email: {{emp.empDetails.email}}</p>
+          </mat-list-item>
+        </mat-list>
+  
+    </mat-expansion-panel>
+  
+  </mat-accordion>
+</div>
+
+<router-outlet></router-outlet>
