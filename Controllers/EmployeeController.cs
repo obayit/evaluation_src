@@ -20,5 +20,10 @@ namespace src.Controllers
         {
             return _employeeLogic.read(id);
         }
+        [HttpGet("[action]")]
+        public List<EmpMaster> List(long id)
+        {
+            return _employeeLogic.list();
+        }
     }
 }

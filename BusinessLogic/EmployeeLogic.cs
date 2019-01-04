@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using src.Model;
 
@@ -10,8 +11,10 @@ namespace src.BusinessLogic
             _context = context;
         }
         public EmpMaster read(long id){
-            var emp = _context.EmpMaster.Include(e => e.EmpDetails).SingleOrDefault(e => e.EmpId == id);
-            return emp;
+            return _context.EmpMaster.Include(e => e.EmpDetails).SingleOrDefault(e => e.EmpId == id);
+        }
+        public List<EmpMaster> list(){
+            return _context.EmpMaster.Include(e => e.EmpDetails).ToList();
         }
     }
 }

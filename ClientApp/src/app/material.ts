@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import {MatButtonModule, MatCheckboxModule, MatIconModule, MatDatepickerModule,
 MatNativeDateModule,
 MatListModule,
-MatCardModule} from '@angular/material';
+MatCardModule,
+MatTableModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
@@ -14,7 +15,8 @@ const modules = [
   MatNativeDateModule,
   MatGridListModule,
   MatListModule,
-  MatCardModule
+  MatCardModule,
+  MatTableModule
 ];
 
 @NgModule({
