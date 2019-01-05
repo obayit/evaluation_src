@@ -1,18 +1,18 @@
 export class EmpMaster{
-    empId: number;
-    empCode: number;
-    empName: string;
-    empDetails: EmpDetails;
+    EmpId: number;
+    EmpCode: number;
+    EmpName: string;
+    EmpDetails: EmpDetails;
   }
 
 export class EmpDetails{
-    empId: number;
-    houseNo: string;
-    blockNo: string;
-    street: string;
-    city: string;
-    state: string;
-    country: string;
-    phone: number;
-    email: string;
+    EmpId: number;
+    HouseNo: string;
+    BlockNo: string;
+    Street: string;
+    City: string;
+    State: string;
+    Country: string;
+    Phone: number;
+    Email: string;
 }

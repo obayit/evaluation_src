@@ -1,3 +1,71 @@
-<p>
-  dialog-add-emp works!
-</p>
+<div class="container">
+  <h3 mat-dialog-title>Add new Issue</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Id" [(ngModel)]="data.EmpId" name="id" type="number" required >
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Code" [(ngModel)]="data.EmpCode" name="code" maxlength="10" required >
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Name" [(ngModel)]="data.EmpName" name="name" maxlength="50" required >
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Country" [(ngModel)]="data.EmpDetails.Country" name="Country" maxlength="50" required >
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="State" [(ngModel)]="data.EmpDetails.State" name="State" maxlength="50" required >
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="City" [(ngModel)]="data.EmpDetails.City" name="City" maxlength="50" required >
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Street" [(ngModel)]="data.EmpDetails.Street" name="name" maxlength="50" required >
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="BlockNo" [(ngModel)]="data.EmpDetails.BlockNo" type="number" name="name" required >
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="HouseNo" [(ngModel)]="data.EmpDetails.HouseNo" type="number" name="name" required >
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Phone" [(ngModel)]="data.EmpDetails.Phone" name="name" type="number" required >
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput class="form-control" placeholder="Email" [(ngModel)]="data.EmpDetails.Email" name="name" maxlength="50" required >
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>
+

@@ -24,6 +24,7 @@ export class AppComponent implements OnInit{
     this.empId = id;
     this.employeeService.getEmployee(this.empId).subscribe(res=>{
       this.emp = res;
+      console.log(res);
     });
   }
 }

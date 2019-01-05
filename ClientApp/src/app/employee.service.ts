@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { EmpDetails, EmpMaster } from './employee';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-    readUrl = 'api/Employee/Read';
-    listUrl = 'api/Employee/List';
+    private readonly readUrl = 'api/Employee/Read';
+    private readonly listUrl = 'api/Employee/List';
+    private readonly addEmpUrl = 'api/Employee/Add';
+    private readonly deleteEmpUrl = 'api/Employee/delete/';
+
+    dataChange: BehaviorSubject<EmpMaster[]> = new BehaviorSubject<EmpMaster[]>([]);
+    // Temporarily stores data from dialogs
+    dialogData: any;
+
     constructor(
       private http: HttpClient
     ) { }
@@ -27,6 +34,23 @@ export class EmployeeService {
         catchError(this.handleError<any>('getList', []))
       );
     }
+    getAllEmp(){
+      this.http.get<EmpMaster[]>(this.listUrl).pipe(
+        catchError(this.handleError<any>('getAllEmp', []))
+      ).subscribe(data => {
+        this.dataChange.next(data);
+      });
+    }
+
+    addEmpMaster(emp: EmpMaster): void {
+    this.http.post(this.addEmpUrl, emp).subscribe(data => {
+      this.dialogData = emp;
+      // this.toasterService.showToaster('Successfully added', 3000);
+      },
+      (err: HttpErrorResponse) => {
+      // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+    });
+   }
   
     private handleError<T> (operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {

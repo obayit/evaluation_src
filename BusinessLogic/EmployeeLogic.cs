@@ -16,5 +16,10 @@ namespace src.BusinessLogic
         public List<EmpMaster> list(){
             return _context.EmpMaster.Include(e => e.EmpDetails).ToList();
         }
+        public EmpMaster add(EmpMaster emp){
+            _context.EmpMaster.Add(emp);
+            _context.SaveChanges();
+            return emp;
+        }
     }
 }

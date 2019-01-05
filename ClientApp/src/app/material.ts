@@ -3,7 +3,9 @@ import {MatButtonModule, MatCheckboxModule, MatIconModule, MatDatepickerModule,
 MatNativeDateModule,
 MatListModule,
 MatCardModule,
-MatTableModule} from '@angular/material';
+MatTableModule,
+MatDialogModule,
+} from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
@@ -16,7 +18,8 @@ const modules = [
   MatGridListModule,
   MatListModule,
   MatCardModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule,
 ];
 
 @NgModule({
