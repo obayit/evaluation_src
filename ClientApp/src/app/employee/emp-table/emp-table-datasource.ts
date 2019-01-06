@@ -1,7 +1,7 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 import { EmpMaster } from 'src/app/employee';
 import { EmployeeService } from 'src/app/employee.service';
 
@@ -12,6 +12,8 @@ import { EmployeeService } from 'src/app/employee.service';
  */
 export class EmpTableDataSource extends DataSource<EmpMaster> {
   data: EmpMaster[] = [];
+  // data: BehaviorSubject<EmpMaster[]> = new BehaviorSubject<EmpMaster[]>([]);
+
 
   constructor(private paginator: MatPaginator, private sort: MatSort
     ,private employeeService: EmployeeService
@@ -21,11 +23,7 @@ export class EmpTableDataSource extends DataSource<EmpMaster> {
 
   getData(){
     this.employeeService.getList().subscribe(res=>{
-      this.data = res;
-      res.forEach(item => {
-        this.data.push(item);
-      });
-      this.connect();
+      // this.data.next(res);
     });
   }
 
@@ -37,18 +35,21 @@ export class EmpTableDataSource extends DataSource<EmpMaster> {
   connect(): Observable<EmpMaster[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-    const dataMutations = [
-      observableOf(this.data),
-      this.paginator.page,
-      this.sort.sortChange
-    ];
+    this.employeeService.getList().subscribe(res=>{
+      this.data = res;
+      const dataMutations = [
+        this.data,
+        this.paginator.page,
+        this.sort.sortChange
+      ];
 
-    // Set the paginator's length
-    this.paginator.length = this.data.length;
+      // Set the paginator's length
+      this.paginator.length = 10;
 
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+      return merge(...dataMutations).pipe(map(() => {
+        return this.getPagedData(this.getSortedData([...this.data]));
+      }));
+    });
   }
 
   /**

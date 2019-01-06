@@ -14,7 +14,6 @@ export class EmployeeService {
     private readonly addEmpUrl = 'api/Employee/Add';
     private readonly deleteEmpUrl = 'api/Employee/delete/';
 
-    dataChange: BehaviorSubject<EmpMaster[]> = new BehaviorSubject<EmpMaster[]>([]);
     // Temporarily stores data from dialogs
     dialogData: any;
 
