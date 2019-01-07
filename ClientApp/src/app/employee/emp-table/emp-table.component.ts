@@ -10,8 +10,8 @@ import { DialogAddEmpComponent } from 'src/app/dialog-add-emp/dialog-add-emp.com
   styleUrls: ['./emp-table.component.css']
 })
 export class EmpTableComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  // @ViewChild(MatSort) sort: MatSort;
   dataSource: EmpTableDataSource;
 
   constructor(
@@ -23,7 +23,8 @@ export class EmpTableComponent implements OnInit {
   displayedColumns: string[] = ['EmpCode', 'EmpName', 'EmpDetails.Email', 'actions'];
 
   ngOnInit() {
-    this.dataSource = new EmpTableDataSource(this.paginator, this.sort, this.employeeService);
+    this.dataSource = new EmpTableDataSource(this.employeeService);
+    this.dataSource.loadData();
   }
 
   addNew() {

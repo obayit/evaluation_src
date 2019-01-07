@@ -36,9 +36,7 @@ export class EmployeeService {
     getAllEmp(){
       this.http.get<EmpMaster[]>(this.listUrl).pipe(
         catchError(this.handleError<any>('getAllEmp', []))
-      ).subscribe(data => {
-        this.dataChange.next(data);
-      });
+      );
     }
 
     addEmpMaster(emp: EmpMaster): void {
